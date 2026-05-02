@@ -17,7 +17,7 @@ There are no tests in this project.
 
 - **Repo**: `https://github.com/hardik121121/Vacation-Times` (pushed via `git@github.com-personal:hardik121121/Vacation-Times.git`)
 - **SSH**: personal key `~/.ssh/id_personal`, alias `github.com-personal` in `~/.ssh/config`
-- **Netlify**: build command `npm run build`, publish directory `dist`
+- **Hosting**: Hostinger (switched from Netlify). Deploy by running `npm run build` and uploading the `dist/` directory.
 
 ## Architecture
 
@@ -28,7 +28,7 @@ All pages are children of a single `<Layout />` route (React Router DOM v7). Add
 
 Routes: `/` (Home), `/packages`, `/gallery`, `/about`, `/contact`, `/privacy`, `/terms`.
 
-`src/pages/Destinations.jsx` exists and is fully implemented but has **no route in `App.jsx`** — it is orphaned. `team.js` is also unused. `DestinationCard`'s "Explore →" hover link points to `/destinations` (dead link). The Home page "Explore All Destinations" button links to `/packages` as a workaround.
+`src/pages/Destinations.jsx` exists and is fully implemented but has **no route in `App.jsx`** — it is orphaned. `FilterTabs` is only used by `Destinations.jsx` and is therefore also effectively orphaned. `team.js` is also unused. `DestinationCard`'s "Explore →" hover link points to `/destinations` (dead link). The Home page "Explore All Destinations" button links to `/packages` as a workaround.
 
 ### Data layer (`src/data/`)
 Pure JS arrays — no API calls. Active data files: `packages.js`, `destinations.js`, `gallery.js`. Pages import directly from these files. `destinations.js` is imported by `Home.jsx` (first 4 items) and the orphaned `Destinations.jsx`; `team.js` and `testimonials.js` are not imported anywhere — actual testimonials are inline arrays inside `Home.jsx` (5 items) and `StaggerTestimonials.jsx` (12 items).
@@ -79,6 +79,8 @@ Key data shapes:
 
 - **Contact** (`src/pages/Contact.jsx`) — form submits via `window.open('https://wa.me/919837089181?text=...')`. Success feedback via `<Toast>` (auto-dismisses 4s).
 
+- **Privacy** (`src/pages/Privacy.jsx`) and **Terms** (`src/pages/Terms.jsx`) — static pages using `PageHero` + an array of `{ title, content }` section objects rendered as a list. Legal contact email: `vivek@vacationtimes.co.in`.
+
 ### StaggerTestimonials (`src/components/shared/StaggerTestimonials.jsx`)
 Staggered card carousel with 12 travel testimonials. Cards are absolute-positioned and shift via CSS `transform` — clicking any non-center card rotates it to center. Uses `clsx`. Color scheme: center card `bg-brown text-white`, others `bg-white text-brown`. Card size switches at `sm` breakpoint (290 → 365 px) via `matchMedia` listener.
 
@@ -120,6 +122,8 @@ Four `@keyframes` — always apply via inline `style={{ animation: '...' }}`:
 `public/VIDEO-2026-05-02-13-42-07.mp4`, `VIDEO-2026-05-02-13-42-08.mp4` — real client gallery videos; second video also used as Home hero background.  
 `public/office.jpeg` — office photo used in Contact page.  
 `public/favicon.svg`, `public/icons.svg` — SVG assets in public root.  
+`public/sitemap.xml` — all 7 routes, canonical domain `https://vacationtimes.co.in`, submitted to Google Search Console.  
+`public/robots.txt` — allows all crawlers, points to sitemap.  
 `public/thumb-video1.jpg`, `public/thumb-video2.jpg` — video thumbnail files present but not referenced by any source file (gallery uses Unsplash URLs as video posters).
 
 ## Brand copy conventions
@@ -127,6 +131,7 @@ Four `@keyframes` — always apply via inline `style={{ animation: '...' }}`:
 - **Years of experience**: founded **June 2019** (~7 years). All copy reads "7 years" / "7+" — do not change.
 - **Spelling**: British English — "Travellers" (double-l), "personalised", "organised".
 - **Phone**: +91 98370 89181 — used consistently across all CTAs.
+- **Email**: `vivek@vacationtimes.co.in` — appears in Privacy/Terms legal copy only.
 - **WhatsApp**: `https://wa.me/919837089181` (chat), `https://api.whatsapp.com/send/?phone=919837089181&text=` (Book Now with empty pre-fill).
 
 ## Unused / leftover files
@@ -138,4 +143,4 @@ Four `@keyframes` — always apply via inline `style={{ animation: '...' }}`:
 
 ## Unused installed packages
 
-`framer-motion`, `@radix-ui/react-label`, `@radix-ui/react-slot`, `class-variance-authority`, `tailwind-merge` — not imported anywhere. `clsx` is used in `StaggerTestimonials.jsx`.
+`framer-motion`, `@radix-ui/react-label`, `@radix-ui/react-slot`, `class-variance-authority`, `tailwind-merge` — not imported anywhere. `clsx` is used in `StaggerTestimonials.jsx`. `ffmpeg-static` is in devDependencies but unused — likely a leftover from a one-off video processing script.
