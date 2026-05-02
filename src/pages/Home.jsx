@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FiHeadphones, FiChevronLeft, FiChevronRight,
-  FiWifi, FiFeather, FiTruck, FiBriefcase,
+  FiUsers, FiUser, FiBriefcase, FiTag, FiCalendar,
 } from 'react-icons/fi'
-import { FaStar, FaBed, FaDumbbell } from 'react-icons/fa6'
-import { MdRestaurant, MdPool } from 'react-icons/md'
+import { FaStar } from 'react-icons/fa6'
+import { MdHotel, MdCurrencyExchange, MdFlight } from 'react-icons/md'
 import { packages } from '../data/packages'
 import { destinations } from '../data/destinations'
 import PackageCard from '../components/shared/PackageCard'
@@ -27,14 +27,14 @@ const hotelStays = [
 ]
 
 const facilities = [
-  { Icon: FaBed,        color: '#8B5CF6', title: 'Luxury Rooms & Suites',     desc: 'Elegant designs, premium bedding.' },
-  { Icon: MdRestaurant, color: '#F59E0B', title: 'Multicuisine Dining',       desc: 'Gourmet restaurants & room service.' },
-  { Icon: MdPool,       color: '#06B6D4', title: 'Rooftop & Infinity Pools',  desc: 'Stunning views and relaxation.' },
-  { Icon: FaDumbbell,   color: '#EF4444', title: 'Modern Fitness Center',     desc: 'State-of-the-art gym equipment.' },
-  { Icon: FiFeather,    color: '#10B981', title: 'Spa & Wellness',            desc: 'Massage, sauna & rejuvenation.' },
-  { Icon: FiWifi,       color: '#3B82F6', title: 'High-Speed Free Wi-Fi',     desc: 'Stay connected everywhere.' },
-  { Icon: FiTruck,      color: '#F97316', title: 'Valet & Airport Transfers', desc: 'Seamless travel logistics.' },
-  { Icon: FiBriefcase,  color: '#6366F1', title: 'Meeting & Event Spaces',    desc: 'Versatile venues for business.' },
+  { Icon: FiUsers,           color: '#0D9488', title: 'Group Departures',      desc: 'Curated group travel experiences.' },
+  { Icon: FiBriefcase,       color: '#6366F1', title: 'Corporate Travels',     desc: 'Tailored corporate trip solutions.' },
+  { Icon: FiUser,            color: '#B45309', title: 'FIT Bookings',          desc: 'Personalised independent travel.' },
+  { Icon: MdHotel,           color: '#8B5CF6', title: 'Hotel Bookings',        desc: 'Premium stays worldwide.' },
+  { Icon: FiTag,             color: '#F97316', title: 'Group Ticketing',       desc: 'Bulk tickets at best rates.' },
+  { Icon: MdCurrencyExchange, color: '#10B981', title: 'Currency Exchange',    desc: 'Competitive forex rates.' },
+  { Icon: MdFlight,          color: '#3B82F6', title: 'Flight Bookings',       desc: 'Domestic & international flights.' },
+  { Icon: FiCalendar,        color: '#EF4444', title: 'Meetings & Events',     desc: 'Versatile venues for business.' },
 ]
 
 const testimonials = [
@@ -204,7 +204,7 @@ export default function Home() {
           {/* ── Section 2: Facilities ── */}
           <div>
             <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-brown mb-8">
-              Facilities Available for Your Stay
+              Our Services
             </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">

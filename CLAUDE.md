@@ -31,7 +31,7 @@ Routes: `/` (Home), `/packages`, `/gallery`, `/about`, `/contact`, `/privacy`, `
 `src/pages/Destinations.jsx` exists and is fully implemented but has **no route in `App.jsx`** — it is orphaned. `team.js` is also unused. `DestinationCard`'s "Explore →" hover link points to `/destinations` (dead link). The Home page "Explore All Destinations" button links to `/packages` as a workaround.
 
 ### Data layer (`src/data/`)
-Pure JS arrays — no API calls. All content (packages, gallery, testimonials) lives here. Pages import directly from these files. `destinations.js` is imported by `Home.jsx` (first 4 items) and the orphaned `Destinations.jsx`; `team.js` is not imported anywhere.
+Pure JS arrays — no API calls. Active data files: `packages.js`, `destinations.js`, `gallery.js`. Pages import directly from these files. `destinations.js` is imported by `Home.jsx` (first 4 items) and the orphaned `Destinations.jsx`; `team.js` and `testimonials.js` are not imported anywhere — actual testimonials are inline arrays inside `Home.jsx` (5 items) and `StaggerTestimonials.jsx` (12 items).
 
 Key data shapes:
 
@@ -118,7 +118,9 @@ Four `@keyframes` — always apply via inline `style={{ animation: '...' }}`:
 
 `public/PHOTO-2026-05-02-13-41-52.jpg` etc. — real client gallery photos (Thailand, Nepal, Dubai, St. Petersburg).  
 `public/VIDEO-2026-05-02-13-42-07.mp4`, `VIDEO-2026-05-02-13-42-08.mp4` — real client gallery videos; second video also used as Home hero background.  
-`public/office.jpeg` — office photo used in Contact page.
+`public/office.jpeg` — office photo used in Contact page.  
+`public/favicon.svg`, `public/icons.svg` — SVG assets in public root.  
+`public/thumb-video1.jpg`, `public/thumb-video2.jpg` — video thumbnail files present but not referenced by any source file (gallery uses Unsplash URLs as video posters).
 
 ## Brand copy conventions
 
@@ -131,6 +133,7 @@ Four `@keyframes` — always apply via inline `style={{ animation: '...' }}`:
 
 - `src/App.css`, `src/assets/hero.png`, `src/assets/react.svg`, `src/assets/vite.svg` — Vite starter boilerplate, not used.
 - `src/components/shared/NewsletterStrip.jsx` — superseded by `AssistanceBanner`; not imported anywhere.
+- `src/data/testimonials.js`, `src/data/team.js` — not imported anywhere; testimonials are inline in their respective components.
 - `public/logos/bajaj.svg`, `hcl.svg`, `hul.svg`, `infosys.svg`, `itc.svg`, `maruti.svg`, `tcs.svg`, `techmahindra.svg`, `wipro.svg`, `taj.svg` — removed from marquee but still in `public/`.
 
 ## Unused installed packages
